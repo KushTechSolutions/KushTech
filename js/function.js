@@ -208,10 +208,12 @@
 		var message = $("#msg").val();
 
 		$.ajax({
-			type: "POST",
-			url: "form-process.php",
+			url: 'form-process.php',
+			type: 'POST',
 			data: "fname=" + fname + "&lname=" + lname + "&email=" + email + "&phone=" + phone + "&subject=" + subject + "&message=" + message,
-			success : function(text){
+			processData: false,
+			contentType: false,
+			success: function(text){
 				if (text == "success"){
 					formSuccess();
 				} else {
@@ -220,6 +222,23 @@
 			}
 		});
 	}
+
+	$(document).ready(function(){
+		$('#contactForm').submit(function(event){
+			event.preventDefault(); // Prevent default form submission
+			
+			var formData = $(this).serialize();
+	
+			$.ajax({
+				url: 'form-process.php',
+				type: 'POST',
+				data: formData,
+				success: function(response){
+					$('#response').html(response);
+				}
+			});
+		});
+	});
 
 	function formSuccess(){
 		$contactform[0].reset();
