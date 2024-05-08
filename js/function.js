@@ -265,7 +265,7 @@
 	/* Popup Video */
 	if ($('.popup-video').length) {
 		$('.popup-video').magnificPopup({
-			disableOn: 700,
+			disableOn: 250,
 			type: 'iframe',
 			mainClass: 'mfp-fade',
 			removalDelay: 160,
